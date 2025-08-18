@@ -8,18 +8,21 @@ jobs:
   gen:
     runs-on: ubuntu-latest
     steps:
+      # ✅ Checkout repo
       - name: Checkout with GITHUB_TOKEN
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
+      # ✅ Set up Java 17
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
 
-      - name: Remove old Gradle wrapper (if exists)
+      # 🧹 Remove old wrapper if exists
+      - name: Remove old Gradle wrapper
         run: |
           echo "Cleaning up old Gradle wrapper..."
           rm -f gradlew gradlew.bat
@@ -31,16 +34,18 @@ jobs:
           mkdir -p app
           echo "${{ secrets.GOOGLE_SERVICES_JSON }}" | base64 --decode > app/google-services.json
 
-      # ✅ Install Gradle CLI explicitly
+      # ✅ Install Gradle CLI
       - name: Install Gradle CLI
         uses: gradle/actions/setup-gradle@v3
         with:
           gradle-version: 8.7
           cache-disabled: true
 
+      # ⚙️ Generate new Gradle wrapper
       - name: Generate new Gradle wrapper (8.7)
         run: gradle wrapper --gradle-version 8.7 --distribution-type all --stacktrace --info --refresh-dependencies
 
+      # 📌 Commit & push wrapper + google-services.json
       - name: Commit & push Gradle wrapper
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
