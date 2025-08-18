@@ -22,8 +22,19 @@ android {
 }
 
 dependencies {
+    // 🔥 Firebase
     implementation platform('com.google.firebase:firebase-bom:33.2.0')
     implementation 'com.google.firebase:firebase-analytics'
+
+    // ✅ Core AndroidX
     implementation 'androidx.core:core-ktx:1.12.0'
     implementation 'androidx.appcompat:appcompat:1.7.0'
+
+    // ✅ Pin error_prone_annotations to avoid resolution issues
+    implementation("com.google.errorprone:error_prone_annotations:2.11.0")
+}
+
+// 🚫 Disable error-prone checks (optional but recommended if you don’t use them)
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs += ["-Xlint:none", "-proc:none"]
 }
