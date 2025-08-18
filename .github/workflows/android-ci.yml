@@ -29,6 +29,10 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v3
 
+      # 🚀 Fix: make gradlew executable
+      - name: Grant execute permission for Gradlew
+        run: chmod +x gradlew
+
       - name: Build Debug APK
         run: ./gradlew assembleDebug --stacktrace
 
