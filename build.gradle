@@ -4,10 +4,9 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        // ✅ Use Android Gradle Plugin 8.4.2 (works well with Gradle 8.7)
-        classpath "com.android.tools.build:gradle:8.4.2"
+        classpath "com.android.tools.build:gradle:8.4.2"   // ⬅️ instead of 8.2.2
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0"
         classpath "com.google.dagger:hilt-android-gradle-plugin:2.48"
-        classpath "com.google.gms:google-services:4.4.2" // Firebase Gradle plugin
+        classpath "com.google.gms:google-services:4.4.2"
     }
 }
