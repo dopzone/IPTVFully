@@ -1,4 +1,4 @@
-name: Add Gradle Wrapper 8.9
+name: Add Gradle Wrapper 8.7
 on: workflow_dispatch
 
 permissions:
@@ -22,10 +22,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gradle wrapper --gradle-version 8.9 --distribution-type all
+          gradle wrapper --gradle-version 8.7 --distribution-type all
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -f gradlew gradle/wrapper/gradle-wrapper.jar gradle/wrapper/gradle-wrapper.properties
-          git commit -m "Add Gradle wrapper 8.9" || echo "No changes"
+          git commit -m "Add Gradle wrapper 8.7" || echo "No changes"
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
           git push
