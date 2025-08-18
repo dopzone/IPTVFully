@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'com.google.gms.google-services'  // Needed for Firebase
+    id 'com.google.gms.google-services'  // Firebase
 }
 
 android {
@@ -30,11 +30,19 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.12.0'
     implementation 'androidx.appcompat:appcompat:1.7.0'
 
-    // ✅ Pin error_prone_annotations to avoid resolution issues
-    implementation("com.google.errorprone:error_prone_annotations:2.11.0")
+    // 🔑 Error-prone annotations should not be packaged
+    compileOnly("com.google.errorprone:error_prone_annotations:2.11.0")
+    annotationProcessor("com.google.errorprone:error_prone_annotations:2.11.0")
 }
 
-// 🚫 Disable error-prone checks (optional but recommended if you don’t use them)
+// 🚫 Disable error-prone checks
 tasks.withType(JavaCompile).configureEach {
     options.compilerArgs += ["-Xlint:none", "-proc:none"]
+}
+
+// ✅ Force consistent version for transitive deps
+configurations.all {
+    resolutionStrategy {
+        force "com.google.errorprone:error_prone_annotations:2.11.0"
+    }
 }
