@@ -18,11 +18,10 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Generate wrapper in Main/
+      - name: Generate wrapper in root directory
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          cd Main
           gradle wrapper --gradle-version 8.9 --distribution-type all
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
