@@ -20,10 +20,11 @@ jobs:
 
       - name: Remove old Gradle wrapper (if exists)
         run: |
-          echo "🗑️ Cleaning up old Gradle wrapper..."
+          echo Cleaning up old Gradle wrapper...
           if exist gradlew del /f gradlew
           if exist gradlew.bat del /f gradlew.bat
           if exist gradle rmdir /s /q gradle
+        shell: cmd
 
       - name: Generate new Gradle wrapper (8.7)
         run: gradle wrapper --gradle-version 8.7 --distribution-type all
