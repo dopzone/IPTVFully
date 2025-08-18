@@ -32,6 +32,15 @@ jobs:
       # 🚀 Fix: make gradlew executable
       - name: Grant execute permission for Gradlew
         run: chmod +x gradlew
+        - name: Checkout
+          uses: actions/checkout@v4
+        
+        - name: Ensure Gradle Wrapper is executable
+          run: |
+            git update-index --chmod=+x gradlew
+            chmod +x gradlew
+            sed -i 's/\r$//' gradlew
+
 
       - name: Build Debug APK
         run: ./gradlew assembleDebug --stacktrace
