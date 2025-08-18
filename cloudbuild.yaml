@@ -1,0 +1,8 @@
+steps:
+  - name: gcr.io/cloud-builders/gradle
+    args: ["assembleDebug"]
+    dir: "app"
+artifacts:
+  objects:
+    location: "gs://your-bucket-name/builds/"
+    paths: ["app/build/outputs/apk/debug/app-debug.apk"]
