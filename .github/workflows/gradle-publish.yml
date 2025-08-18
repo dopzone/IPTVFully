@@ -6,7 +6,7 @@ permissions:
 
 jobs:
   gen:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout with GITHUB_TOKEN
         uses: actions/checkout@v4
@@ -21,11 +21,15 @@ jobs:
 
       - name: Remove old Gradle wrapper (if exists)
         run: |
-          echo Cleaning up old Gradle wrapper...
-          if exist gradlew del /f gradlew
-          if exist gradlew.bat del /f gradlew.bat
-          if exist gradle rmdir /s /q gradle
-        shell: cmd
+          echo "Cleaning up old Gradle wrapper..."
+          rm -f gradlew gradlew.bat
+          rm -rf gradle
+
+      # 🔑 Restore google-services.json
+      - name: Decode google-services.json
+        run: |
+          mkdir -p app
+          echo "${{ secrets.GOOGLE_SERVICES_JSON }}" | base64 --decode > app/google-services.json
 
       # ✅ Install Gradle CLI explicitly
       - name: Install Gradle CLI
@@ -43,7 +47,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f gradlew gradlew.bat gradle/wrapper/gradle-wrapper.jar gradle/wrapper/gradle-wrapper.properties
+          git add -f gradlew gradlew.bat gradle/wrapper/gradle-wrapper.jar gradle/wrapper/gradle-wrapper.properties app/google-services.json
           git commit -m "Update Gradle wrapper to 8.7" || exit 0
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
           git push
