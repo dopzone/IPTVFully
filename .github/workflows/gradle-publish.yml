@@ -26,6 +26,9 @@ jobs:
           if exist gradle rmdir /s /q gradle
         shell: cmd
 
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v3
+
       - name: Generate new Gradle wrapper (8.7)
         run: gradle wrapper --gradle-version 8.7 --distribution-type all
 
