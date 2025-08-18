@@ -1,7 +1,7 @@
 pluginManagement {
     repositories {
-        google()        // ✅ Required for Android Gradle Plugin
-        mavenCentral()  // ✅ Required for Kotlin, Hilt, etc.
+        mavenCentral()  // prefer this first for general libraries
+        google()        // keep this for Android Gradle Plugin
         gradlePluginPortal()
     }
 }
@@ -9,8 +9,8 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
+        mavenCentral()  // prefer Maven Central first
         google()
-        mavenCentral()
     }
 }
 
