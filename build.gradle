@@ -6,10 +6,14 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:8.4.2"              // ✅ AGP compatible with Gradle 8.7
+        // ✅ Core Gradle Plugins
+        classpath "com.android.tools.build:gradle:8.4.2"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0"
-        classpath "com.google.dagger:hilt-android-gradle-plugin:2.48"
-        classpath "com.google.gms:google-services:4.4.2"              // ✅ REQUIRED for Firebase Google Services plugin
+
+        // ✅ Firebase Google Services plugin (must stay here)
+        classpath "com.google.gms:google-services:4.4.2"
+
+        // ❌ Hilt plugin removed (now handled via plugins{} DSL in /app/build.gradle)
     }
 }
 
