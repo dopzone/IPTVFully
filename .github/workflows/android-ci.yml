@@ -20,6 +20,10 @@ jobs:
         run: |
           echo "${{ secrets.GOOGLE_SERVICES_JSON }}" | base64 --decode > app/google-services.json
 
+      # ✅ Ensure gradlew is executable (prevents Permission denied)
+      - name: Ensure Gradle Wrapper is executable
+        run: chmod +x ./gradlew
+
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
@@ -28,19 +32,6 @@ jobs:
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v3
-
-      # 🚀 Fix: make gradlew executable
-      - name: Grant execute permission for Gradlew
-        run: chmod +x gradlew
-        - name: Checkout
-          uses: actions/checkout@v4
-        
-        - name: Ensure Gradle Wrapper is executable
-          run: |
-            git update-index --chmod=+x gradlew
-            chmod +x gradlew
-            sed -i 's/\r$//' gradlew
-
 
       - name: Build Debug APK
         run: ./gradlew assembleDebug --stacktrace
