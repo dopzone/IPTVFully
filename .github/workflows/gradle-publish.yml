@@ -33,7 +33,8 @@ jobs:
           gradle-version: 8.7
 
       - name: Generate new Gradle wrapper (8.7)
-        run: gradle wrapper --gradle-version 8.7 --distribution-type all --stacktrace --info
+        run: gradle wrapper --gradle-version 8.7 --distribution-type all --stacktrace --info --refresh-dependencies
+
 
       - name: Commit & push Gradle wrapper
         env:
