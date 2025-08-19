@@ -1,29 +1,7 @@
-// Root-level build.gradle
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
 
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        // ✅ Core Gradle Plugins
-        classpath "com.android.tools.build:gradle:8.4.2"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0"
-
-        // ✅ Firebase Google Services plugin (must stay here)
-        classpath "com.google.gms:google-services:4.4.2"
-
-        // ❌ Hilt plugin removed (now handled via plugins{} DSL in /app/build.gradle)
-    }
-}
-
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
+plugins {
+    id("com.android.application") version "8.3.2" apply false
+    id("com.android.library") version "8.3.2" apply false
+    id("org.jetbrains.kotlin.android") version "1.9.23" apply false
 }
