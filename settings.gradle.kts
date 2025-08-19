@@ -1,8 +1,8 @@
 pluginManagement {
     repositories {
-        google()        // ✅ Required for Android Gradle Plugin
-        mavenCentral()  // ✅ Required for Kotlin, Hilt, etc.
         gradlePluginPortal()
+        google()
+        mavenCentral()
     }
 }
 
