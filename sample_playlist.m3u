@@ -1,5 +1,5 @@
 #EXTM3U
-#EXTINF:-1 tvg-id="bbcnews" tvg-name="BBC News" tvg-logo="https://example.com/bbc.png" group-title="News",BBC News
+#EXTINF:-1 tvg-id="bbcnews" tvg-name="BBC News" tvg-logo="https://example.com/bbc.png" group-title="News",BBC BNews
 http://example.com/bbc.m3u8
 
 #EXTINF:-1 tvg-id="cnn" tvg-name="CNN" tvg-logo="https://example.com/cnn.png" group-title="News",CNN
